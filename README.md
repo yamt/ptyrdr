@@ -1,10 +1,9 @@
 ptyrdr
 ======
 
-a small program to open a pty.
+open a pty and dup it to stdin and stdout.
 this can be useful when creating a vpn with ssh and pppd.
 
-expected usage:
+an example:
 
-	# PTY=$(ptyrdr ssh peer_host pppd noauth)
-	# pppd ${PTY} 10.0.0.1:10.0.0.2 noauth
+	# pppd $(ptyrdr ssh peer_host pppd noauth) 10.0.0.1:10.0.0.2 noauth
