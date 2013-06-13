@@ -54,7 +54,7 @@ main(int argc, char *argv[])
 		exit(2);
 
 	/*
-	 * open a pseudo-tty
+	 * open a pseudo-tty.
 	 */
 #if defined(USE_POSIX_OPENPT)
 	fd = posix_openpt(O_RDWR);
@@ -80,6 +80,9 @@ main(int argc, char *argv[])
 	slavename = slavename0;
 #endif /* !defined(USE_POSIX_OPENPT) */
 
+	/*
+	 * print the name of the slave.
+	 */
 	if (printf("%s", slavename) < 0 || fflush(stdout) != 0) {
 		perror("printf");
 		exit(1);
@@ -98,6 +101,9 @@ main(int argc, char *argv[])
 		close(fd);
 	}
 
+	/*
+	 * daemonize and exec the specified program.
+	 */
 #if defined(USE_DAEMON)
 	if (daemon(0, 1)) {
 		perror("daemon");
